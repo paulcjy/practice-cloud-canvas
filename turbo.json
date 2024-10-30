@@ -1,0 +1,24 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "globalDependencies": ["**/.env"],
+    "ui": "tui",
+    "tasks": {
+        "start": {
+            "dependsOn": ["build"]
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "build": {
+            "dependsOn": ["clean"],
+            "outputs": ["dist/**"]
+        },
+        "bundle": {
+            "outputs": ["../cli/dist/**"]
+        },
+        "clean": {
+            "cache": false
+        }
+    }
+}

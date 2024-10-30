@@ -1,0 +1,3 @@
+import t from"express";import c from"morgan";import l from"node:path";import o from"chalk";import{Router as a}from"express";var s=a();s.get("/hello",(p,r)=>{r.status(200).json({message:"Hello, world! asdf"})});var i=process.env.PORT||3e3,n=l.join(__dirname,"../client"),e=t();e.use(c("dev"));e.use(t.json());e.use(t.urlencoded({extended:!0}));e.use(t.static(n));e.get("/",(p,r)=>{r.sendFile("index.html",{root:n})});e.use("/api",s);e.listen(i,()=>{console.log(o.greenBright(`
+  Server listening on port ${i}
+`)),console.log(o.whiteBright("  - Local:"),o.cyanBright(`http://localhost:${i}`)),console.log(o.whiteBright("  - Client path:"),o.blueBright(l.relative(process.cwd(),n)))});
