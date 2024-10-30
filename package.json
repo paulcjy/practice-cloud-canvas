@@ -18,8 +18,10 @@
         "build:server": "turbo run build --filter=@cctest37/server",
         "bundle": "turbo run bundle",
         "clean": "turbo run clean",
-        "changeset": "changeset version",
-        "changeset:init": "changeset init"
+        "changeset": "changeset",
+        "changeset:init": "changeset init",
+        "version": "changeset version",
+        "release": "changeset publish"
     },
     "keywords": [],
     "devDependencies": {
