@@ -6,10 +6,15 @@ import { api as apiRouter } from './api';
 
 const port = process.env.PORT || 3000;
 
-// const clientPath = require.resolve('@cloud-canvas/client/package.json');
-// const clientDistPath = path.resolve(path.dirname(clientPath), 'dist');
+const staticDir = path.join(
+    process.cwd(),
+    process.env.NODE_ENV === 'development' ? '../client/dist' : './client'
+);
 
-const clientDistPath = path.join(__dirname, '../client');
+console.log('  - env:\t', process.env.NODE_ENV);
+console.log('  - cwd:\t', process.cwd());
+console.log('  - dirname:\t', __dirname);
+console.log('  - static:\t', staticDir);
 
 const app = express();
 
@@ -19,11 +24,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static files
-app.use(express.static(clientDistPath));
+app.use(express.static(staticDir));
 
 // Client
 app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: clientDistPath });
+    res.sendFile('index.html', { root: staticDir });
 });
 
 // API
@@ -37,6 +42,6 @@ app.listen(port, () => {
     );
     console.log(
         chalk.whiteBright('  - Client path:'),
-        chalk.blueBright(path.relative(process.cwd(), clientDistPath))
+        chalk.blueBright(path.relative(process.cwd(), staticDir))
     );
 });

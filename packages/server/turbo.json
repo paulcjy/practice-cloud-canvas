@@ -1,0 +1,14 @@
+{
+    "extends": ["//"],
+    "tasks": {
+        "dev": {
+            "dependsOn": ["@cctest37/client#build"],
+            "cache": false,
+            "persistent": true
+        },
+        "build": {
+            "dependsOn": ["@cctest37/client#build", "clean"],
+            "outputs": ["dist/**"]
+        }
+    }
+}
